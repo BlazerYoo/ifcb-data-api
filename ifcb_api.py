@@ -31,7 +31,7 @@ def get_dataset(dataset_name):
         print(f'Request failed with status code {response.status_code}', file=sys.stderr)
         return (False, None)
 
-def download_data()
+#def download_data()
 
 def main():
     print(list_datasets())

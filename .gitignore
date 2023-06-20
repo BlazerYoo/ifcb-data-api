@@ -1,0 +1,5 @@
+activate.sh
+__pycache__
+testpypi
+chromedriver_win32.zip
+chromedriver_win32
