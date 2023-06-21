@@ -104,7 +104,11 @@ def main():
     
     # Get dataset, start date, end date
     if args.name is not None and args.start is not None and args.end is not None :
-        browser.get_data(args.name, args.start, args.end)
+        start_date_arr = args.start.split('.')
+        end_date_arr = args.end.split('.')
+        start_date = start_date_arr[0] + ' ' + start_date_arr[1]
+        end_date = end_date_arr[0] + ' ' + end_date_arr[1]
+        browser.get_data(args.name, start_date, end_date)
     # Get start date
     # if args.start is not None:
 
