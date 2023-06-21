@@ -103,8 +103,8 @@ def main():
         sys.exit(0)
     
     # Get dataset, start date, end date
-    if args.name is not None:
-        pass
+    if args.name is not None and args.start is not None and args.end is not None :
+        browser.get_data(args.name, args.start, args.end)
     # Get start date
     # if args.start is not None:
 

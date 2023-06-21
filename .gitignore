@@ -3,3 +3,5 @@ __pycache__
 testpypi
 chromedriver_win32.zip
 chromedriver_win32
+.vscode
+ifcb_test.egg-info
