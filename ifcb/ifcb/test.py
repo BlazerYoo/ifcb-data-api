@@ -1,5 +1,6 @@
 from msg import success_msg, info_msg, error_msg
 import datetime
+import platform
 
 def innerFunc():
     info_msg('running innerFunc')
@@ -25,3 +26,5 @@ def outerFunc():
 
 a = datetime.datetime(2023, 6, 21, 12, 12, 12)
 print(f'time is: {a}')
+
+print(platform.system())

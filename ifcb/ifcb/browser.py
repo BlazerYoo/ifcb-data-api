@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 
 
-import datetime
-import time
-import json
-import sys
-from color import Text
+import datetime, time, json, platform
 from msg import start_msg, success_msg, info_msg, error_msg, attention_msg, end_msg
 
 from selenium import webdriver
@@ -18,7 +14,9 @@ from selenium.webdriver.common.by import By
 
 
 # Specify chromedriver binary
-driver_path = '.\\chromedriver_win32\\chromedriver.exe'
+driver_path = './chromedriver_linux64/chromedriver'
+if platform.system() == 'Windows':
+    driver_path = '.\\chromedriver_win32\\chromedriver.exe'
 service = ChromeService(executable_path=driver_path)
 
 # Run headless + options
