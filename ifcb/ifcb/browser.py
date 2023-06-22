@@ -22,7 +22,7 @@ service = ChromeService(executable_path=driver_path)
 # Run headless + options
 options = ChromeOptions()
 options.add_argument('--headless=new')
-options.add_argument('--no-sandbox')
+#options.add_argument('--no-sandbox')
 max_wait_time = 30
 
 
@@ -162,13 +162,19 @@ def click_prev_bin(driver, current_url):
 
         # Wait until 'Previous Bin' element found
         element_locator = (By.ID, 'previous-bin')
-        element = wait.until(EC.presence_of_element_located(
+        '''        element = wait.until(EC.presence_of_element_located(
+            element_locator
+        ))'''
+        info_msg('3) found \'previous-bin\' element')
+
+        # Wait until 'Previous Bin' really clickable
+        element = wait.until(EC.element_to_be_clickable(
             element_locator
         ))
-        info_msg('3) found \'previous-bin\' element')
         info_msg('4) ready to click \'previous-bin\' element')
         
-        element.click()
+        #element.click()
+        driver.execute_script('arguments[0].click();', element)
 
         # Wait for new page to fully load
         while driver.current_url == current_url:
@@ -181,7 +187,7 @@ def click_prev_bin(driver, current_url):
         raise Exception('click_prev_bin() FAIL -> ' + str(ex))
 
 
-
+"""
 def click_next_bin(driver, current_url):
     try:
         info_msg('Going to next bin...')
@@ -222,7 +228,7 @@ def click_next_bin(driver, current_url):
     except Exception as ex:
         raise Exception('click_next_bin() FAIL -> ' + str(ex))
 
-
+"""
 
 def download_zip(driver):
     try:
@@ -249,9 +255,15 @@ def download_zip(driver):
             element_locator
         ))
         info_msg('3) found \'download-zip\' element')
+
+        # Wait until 'Previous Bin' really clickable
+        element = wait.until(EC.element_to_be_clickable(
+            element_locator
+        ))
         info_msg('4) ready to click \'download-zip\' element')
         
-        element.click()
+        #element.click()
+        driver.execute_script('arguments[0].click();', element)
         
         success_msg('download_zip() SUCCESS')
         
@@ -261,9 +273,10 @@ def download_zip(driver):
 
 
 def get_data(dataset_name, start_date=None, end_date=None):
+    start_msg(f'Getting \'{dataset_name}\' data from {start_date} to {end_date}...')
+    driver = webdriver.Chrome(service=service, options=options)
+
     try:
-        start_msg(f'Getting \'{dataset_name}\' data from {start_date} to {end_date}...')
-        driver = webdriver.Chrome(service=service, options=options)
 
         # Update metadata
         current_dt = update_metadata(driver, dataset_name)
@@ -303,6 +316,8 @@ def get_data(dataset_name, start_date=None, end_date=None):
 
     finally:
         driver.quit()
+
+
 
 
 
