@@ -21,7 +21,8 @@ service = ChromeService(executable_path=driver_path)
 
 # Run headless + options
 options = ChromeOptions()
-#options.add_argument('--headless=new')
+options.add_argument('--headless=new')
+options.add_argument('--no-sandbox')
 max_wait_time = 30
 
 
@@ -262,8 +263,7 @@ def download_zip(driver):
 def get_data(dataset_name, start_date=None, end_date=None):
     try:
         start_msg(f'Getting \'{dataset_name}\' data from {start_date} to {end_date}...')
-        #driver = webdriver.Chrome(service=service, options=options)
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Chrome(service=service, options=options)
 
         # Update metadata
         current_dt = update_metadata(driver, dataset_name)
