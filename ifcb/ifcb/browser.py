@@ -177,9 +177,10 @@ def click_prev_bin(driver, current_url):
         driver.execute_script('arguments[0].click();', element)
 
         # Wait for new page to fully load
-        while driver.current_url == current_url:
+        wait.until(EC.url_changes(current_url))
+        """        while driver.current_url == current_url:
             info_msg('waiting for previous page to load...')
-            time.sleep(0.1)
+            time.sleep(0.1)"""
         
         success_msg('click_prev_bin() SUCCESS')
         
